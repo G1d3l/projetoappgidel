@@ -1,0 +1,87 @@
+mutation CreateSeedData @auth(level: PUBLIC, insecureReason: "This mutation is used to seed the database with initial data and is safe to expose to the public.") @transaction {
+  user_insertMany(data: [
+    {
+      id: "67133b0a-848a-448a-a973-73255ca44256",
+      displayName: "Alice",
+      email: "alice@example.com",
+      role: "customer"
+    },
+    {
+      id: "816a7b29-1e27-46b1-9c1a-7a8e961c7d5b",
+      displayName: "Bob",
+      email: "bob@example.com",
+      role: "producer"
+    }
+  ])
+  product_insertMany(data: [
+    {
+      id: "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      producerId: "816a7b29-1e27-46b1-9c1a-7a8e961c7d5b",
+      name: "Organic Apples",
+      description: "Freshly picked organic apples",
+      imageUrl: "http://example.com/apples.jpg",
+      price: 2.50,
+      stockQuantity: 100,
+      category: "fruit"
+    },
+    {
+      id: "bc456def-9012-3456-789a-bcdef0123456",
+      producerId: "816a7b29-1e27-46b1-9c1a-7a8e961c7d5b",
+      name: "Free Range Eggs",
+      description: "Farm fresh free range eggs",
+      imageUrl: "http://example.com/eggs.jpg",
+      price: 4.00,
+      stockQuantity: 50,
+      category: "dairy"
+    }
+  ])
+  review_insertMany(data: [
+    {
+      id: "cdef7890-1234-5678-9abc-def012345678",
+      customerId: "67133b0a-848a-448a-a973-73255ca44256",
+      producerId: "816a7b29-1e27-46b1-9c1a-7a8e961c7d5b",
+      productId: "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      rating: 5,
+      reviewText: "Delicious apples!"
+      createdAt: "2024-04-24T12:00:00Z"
+    },
+    {
+      id: "ef012345-6789-0abc-def0-1234567890ab",
+      customerId: "67133b0a-848a-448a-a973-73255ca44256",
+      producerId: "816a7b29-1e27-46b1-9c1a-7a8e961c7d5b",
+      productId: "bc456def-9012-3456-789a-bcdef0123456",
+      rating: 4,
+      reviewText: "Great eggs, will buy again!"
+      createdAt: "2024-04-24T13:00:00Z"
+    }
+  ])
+  order_insertMany(data: [
+    {
+      id: "d1e2f3a4-b5c6-7890-3456-7890abcdef12",
+      customerId: "67133b0a-848a-448a-a973-73255ca44256",
+      deliveryAddress: "123 Main St",
+      deliveryInstructions: "Leave at front door",
+      estimatedDeliveryDate: "2024-04-26",
+      orderDate: "2024-04-24T11:00:00Z",
+      paymentMethod: "Credit Card",
+      status: "pending",
+      totalAmount: 12.50
+    }
+  ])
+  orderItem_insertMany(data: [
+    {
+      id: "f2a3b4c5-d6e7-890a-4567-890abcdef1234",
+      orderId: "d1e2f3a4-b5c6-7890-3456-7890abcdef12",
+      productId: "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      quantity: 2,
+      unitPrice: 2.50
+    },
+    {
+      id: "0a9b8c7d-6e5f-4321-fedc-ba9876543210",
+      orderId: "d1e2f3a4-b5c6-7890-3456-7890abcdef12",
+      productId: "bc456def-9012-3456-789a-bcdef0123456",
+      quantity: 1,
+      unitPrice: 4.00
+    }
+  ])
+}
