@@ -25,7 +25,7 @@ Aqui, cada identidade é celebrada como única e valiosa, cada voz é reconhecid
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Acessar Telas</Text>
+        <Text style={styles.sectionTitle}></Text>
 
         <TouchableOpacity style={styles.card} onPress={() => router.push('/projetos')}>
           <Text style={styles.cardTitle}>Projetos</Text>
